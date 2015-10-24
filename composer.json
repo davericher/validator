@@ -1,5 +1,5 @@
 {
-    "name": "ir0ny1/Validator",
+    "name": "ir0ny1/validator",
     "description":  "PHP Validator inspired by Illuminate Framework",
     "version":  "0.0.1",
     "keywords": ["php", "validator", "validation"],
