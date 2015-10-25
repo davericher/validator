@@ -5,6 +5,7 @@
     "keywords": ["php", "validator", "validation"],
     "homepage": "https://www.develops.io",
     "time": "2015-10-21",
+    "type": "package",
     "license":  "MIT",
     "authors": [
         {
