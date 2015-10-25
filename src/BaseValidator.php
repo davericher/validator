@@ -35,7 +35,7 @@ abstract class BaseValidator implements IValidator
      * @param $data array Associative array of data
      * @param $rules array Associative array of rules
      */
-    public function __construct(array $data, array $rules)
+    public function __construct(array $data = [], array $rules = [])
     {
         // Set the rules
         $this->rules = $rules;
@@ -44,6 +44,7 @@ abstract class BaseValidator implements IValidator
         // Initialize the errors
         $this->errors = [];
     }
+
 
     /**
      * Add a message to the error Associative array
@@ -168,5 +169,32 @@ abstract class BaseValidator implements IValidator
     protected function hasProperty($property)
     {
         return array_key_exists($property,$this->data);
+    }
+
+
+    /**
+     * Set the rules
+     *
+     * @param array $rules
+     * @return $this
+     */
+    public function setRules(array $rules)
+    {
+        $this->rules = $rules;
+
+        return $this;
+    }
+
+    /**
+     * Set the data
+     *
+     * @param array $data
+     * @return $this
+     */
+    public function setData(array $data)
+    {
+        $this->data = $data;
+
+        return $this;
     }
 }
