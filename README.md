@@ -27,9 +27,18 @@ $data = [
     "name"  =>  "Dave"
 ];
 
+// Set the data and rules when creating the object
 $val = new Validator($data, $rules);
+// Or after..
+$val->setData($data);
+$val->setRules($rules);
+// Or chain
+$val->setData($data)->setRules($rules);
 
+// Either validate with the validate method
 $val->validate();
+// Or validate by invoking the object itself
+$val();
 
 if (!val->valid()) {
     echo $val->validationMessageFor("name");

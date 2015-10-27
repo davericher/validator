@@ -164,13 +164,14 @@ class Validator extends  BaseValidator
      */
     public function isFileSizeMin($property, $value)
     {
-        $fileExists = array_key_exists($property, $_FILES);
-        $fileSize = $_FILES[$property]['size'];
-        if ($fileExists && $fileSize < ($value * 1024)) {
-            $this->addError($property, "must be under " . ($value * 1024) . " MB");
-        }
-
-        return $this;
+        // TODO needs refactor
+//        $fileExists = array_key_exists($property, $_FILES);
+//        $fileSize = $_FILES[$property]['size'];
+//        if ($fileExists && $fileSize < ($value * 1024)) {
+//            $this->addError($property, "must be under " . ($value * 1024) . " MB");
+//        }
+//
+//        return $this;
     }
 
     /**
@@ -181,13 +182,14 @@ class Validator extends  BaseValidator
      */
     public function isFileSizeMax($property, $value)
     {
-        $fileExists = array_key_exists($property, $_FILES);
-        $fileSize = $_FILES[$property]['size'];
-        if ($fileExists && $fileSize > ($value * 1024)) {
-            $this->addError($property, "must be under " . ($value * 1024) . " MB");
-        }
-
-        return $this;
+        // TODO needs refactor
+//        $fileExists = array_key_exists($property, $_FILES);
+//        $fileSize = $_FILES[$property]['size'];
+//        if ($fileExists && $fileSize > ($value * 1024)) {
+//            $this->addError($property, "must be under " . ($value * 1024) . " MB");
+//        }
+//
+//        return $this;
     }
 
     /**
@@ -200,7 +202,7 @@ class Validator extends  BaseValidator
         if (!array_key_exists($property, $_FILES)) {
             $this->addError($property, "is a required File upload");
         }
-
+        
         return $this;
     }
 

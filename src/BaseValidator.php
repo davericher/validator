@@ -41,8 +41,6 @@ abstract class BaseValidator implements IValidator
         $this->rules = $rules;
         // Set the data
         $this->data = $data;
-        // Initialize the errors
-        $this->errors = [];
     }
 
 
@@ -53,6 +51,7 @@ abstract class BaseValidator implements IValidator
      */
     public function addError($property, $message)
     {
+
         // Prevent pushing a new message if a message for this property already exists
         if (!Arr::multiKeyExists($this->errors, $property)) {
             // Push the message into the errors array
@@ -67,7 +66,7 @@ abstract class BaseValidator implements IValidator
      */
     public function valid()
     {
-        return !count($this->errors) > 0;
+        return !is_null($this->errors) && !count($this->errors);
     }
 
     /**
@@ -75,6 +74,11 @@ abstract class BaseValidator implements IValidator
      */
     public function validate()
     {
+        // If the error array does not exist, create it
+        if (is_null($this->errors)) {
+            $this->errors = [];
+        }
+
         // go through the rules and break them into property / ruleLine key value pairs
         foreach ($this->rules as $property => $rulesLine) {
             // Extract the rules from the string
@@ -91,6 +95,8 @@ abstract class BaseValidator implements IValidator
                 $this->validateProperty($property, $rule, $value);
             }
         }
+
+        return $this;
     }
 
     /**
@@ -196,5 +202,13 @@ abstract class BaseValidator implements IValidator
         $this->data = $data;
 
         return $this;
+    }
+
+    /**
+     * Run the validate method if the class is directly invoked
+     */
+    public function __invoke()
+    {
+        $this->validate();
     }
 }

@@ -8,17 +8,61 @@ use ir0ny1\Validator\Validator;
 class ValidatorTest extends PHPUnit_Framework_TestCase
 {
 
+    public function testValidatorWorks()
+    {
+        $val = new Validator();
+        $this->assertInstanceOf(Validator::class, $val);
+    }
+
+    public function testInvoke()
+    {
+        $val = new Validator(
+        // Data
+            [
+                'name' => 'dave'
+            ],
+            // Rules
+            [
+                'name' => 'required'
+            ]);
+
+        // Invoke the validation directly
+        $val();
+        $this->assertTrue($val->valid());
+    }
+
+    public function testWithoutInvoke()
+    {
+        $val = new Validator(
+            // Data
+            [
+                'name' => 'dave'
+            ],
+            // Rules
+            [
+                'name' => 'required'
+            ]
+        );
+
+        $this->assertFalse($val->valid());
+    }
+
+    public function testChaining()
+    {
+        $val = new Validator();
+        $this->assertTrue($val->setData(['name' => 'dave'])->setRules(['name' => 'required'])->validate()->valid());
+    }
+
     public function testRequiredExists()
     {
-        $data = [
-            'name' => 'Dave'
-        ];
-
-        $rules = [
-            'name' => 'required'
-        ];
-
-        $val = new Validator($data, $rules);
+        $val = new Validator(
+            [
+                'name' => 'Dave'
+            ],
+            [
+                'name' => 'Dave'
+            ]
+        );
 
         $val->validate();
 
@@ -27,14 +71,14 @@ class ValidatorTest extends PHPUnit_Framework_TestCase
 
     public function testRequiredDoesNotExist()
     {
-        $data = [
-            'name'  =>  ''
-        ];
-        $rules = [
-            'name'  =>  'required'
-        ];
-
-        $val = new Validator($data, $rules);
+        $val = new Validator(
+            [
+                'name' => ''
+            ],
+            [
+                'name' => 'required'
+            ]
+        );
 
         $val->validate();
 
@@ -43,15 +87,14 @@ class ValidatorTest extends PHPUnit_Framework_TestCase
 
     public function testEqualToPasses()
     {
-        $data = [
-            'a' => 'a',
-        ];
-
-        $rules = [
-            'a' => 'equalTo:a'
-        ];
-
-        $val = new Validator($data, $rules);
+        $val = new Validator(
+            [
+                'a' => 'a',
+            ],
+            [
+                'a' => 'equalTo:a'
+            ]
+        );
 
         $val->validate();
 
@@ -60,15 +103,14 @@ class ValidatorTest extends PHPUnit_Framework_TestCase
 
     public function testEqualToFails()
     {
-        $data = [
-            'a' => 'b',
-        ];
-
-        $rules = [
-            'a' => 'equalTo:a'
-        ];
-
-        $val = new Validator($data, $rules);
+        $val = new Validator(
+            [
+                'a' => 'b',
+            ],
+            [
+                'a' => 'equalTo:a'
+            ]
+        );
 
         $val->validate();
 
@@ -77,16 +119,15 @@ class ValidatorTest extends PHPUnit_Framework_TestCase
 
     public function testSameAsPasses()
     {
-        $data = [
-            'a' => 'a',
-            'b' => 'a'
-        ];
-
-        $rules = [
-            'b' => 'sameAs:a'
-        ];
-
-        $val = new Validator($data, $rules);
+        $val = new Validator(
+            [
+                'a' => 'a',
+                'b' => 'a'
+            ],
+            [
+                'b' => 'sameAs:a'
+            ]
+        );
 
         $val->validate();
 
@@ -95,16 +136,15 @@ class ValidatorTest extends PHPUnit_Framework_TestCase
 
     public function testSameAsFails()
     {
-        $data = [
-            'a' => 'a',
-            'b' => 'c'
-        ];
-
-        $rules = [
-            'a' => 'sameAs:b',
-        ];
-
-        $val = new Validator($data, $rules);
+        $val = new Validator(
+            [
+                'a' => 'a',
+                'b' => 'c'
+            ],
+            [
+                'a' => 'sameAs:b',
+            ]
+        );
 
         $val->validate();
 
@@ -113,15 +153,14 @@ class ValidatorTest extends PHPUnit_Framework_TestCase
 
     public function testMaxLengthPasses()
     {
-        $data = [
-            'name'  =>  'dave'
-        ];
-
-        $rules = [
-            'name'  =>  'maxLength:4'
-        ];
-
-        $val = new Validator($data, $rules);
+        $val = new Validator(
+            [
+                'name' => 'dave'
+            ],
+            [
+                'name' => 'maxLength:4'
+            ]
+        );
 
         $val->validate();
 
@@ -130,15 +169,14 @@ class ValidatorTest extends PHPUnit_Framework_TestCase
 
     public function testMaxLengthFails()
     {
-        $data = [
-            'name'  =>  'david'
-        ];
-
-        $rules = [
-            'name'  =>  'maxLength:4'
-        ];
-
-        $val = new Validator($data, $rules);
+        $val = new Validator(
+            [
+                'name' => 'david'
+            ],
+            [
+                'name' => 'maxLength:4'
+            ]
+        );
 
         $val->validate();
 
