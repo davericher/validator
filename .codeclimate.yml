@@ -1,4 +1,3 @@
----
 engines:
   phpcodesniffer:
     enabled: true
@@ -15,4 +14,4 @@ ratings:
   - "**.module"
   - "**.inc"
 exclude_paths:
-  - tests/
+  - tests/*

@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/ir0ny1/validator.svg?branch=master)](https://travis-ci.org/ir0ny1/validator)
+[![Code Climate](https://codeclimate.com/github/ir0ny1/validator/badges/gpa.svg)](https://codeclimate.com/github/ir0ny1/validator)
 #Validation Helper Written By Dave Richer
 ##For Course: CST8257 Web Application Development
 ###Release Date: October 17th 2015
