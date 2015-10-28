@@ -9,7 +9,7 @@ use ir0ny1\Validator\Helpers\Str;
  * @author Dave Richer
  * @package ir0ny1\Validator
  */
-class Validator extends  BaseValidator
+class Validator extends BaseValidator
 {
 
     /**
@@ -153,56 +153,6 @@ class Validator extends  BaseValidator
             $this->addError($property, "must be a valid email address");
         }
 
-        return $this;
-    }
-
-    /**
-     * Set the Min File size
-     * @param $property string Property to be validates
-     * @param $value int Size in Megabytes
-     * @return $this
-     */
-    public function isFileSizeMin($property, $value)
-    {
-        // TODO needs refactor
-//        $fileExists = array_key_exists($property, $_FILES);
-//        $fileSize = $_FILES[$property]['size'];
-//        if ($fileExists && $fileSize < ($value * 1024)) {
-//            $this->addError($property, "must be under " . ($value * 1024) . " MB");
-//        }
-//
-//        return $this;
-    }
-
-    /**
-     * Set the Max File size
-     * @param $property string Property to be validates
-     * @param $value int Size in Megabytes
-     * @return $this
-     */
-    public function isFileSizeMax($property, $value)
-    {
-        // TODO needs refactor
-//        $fileExists = array_key_exists($property, $_FILES);
-//        $fileSize = $_FILES[$property]['size'];
-//        if ($fileExists && $fileSize > ($value * 1024)) {
-//            $this->addError($property, "must be under " . ($value * 1024) . " MB");
-//        }
-//
-//        return $this;
-    }
-
-    /**
-     * Check if a property exists in the property
-     * @param $property string The property that is required
-     * @return $this Validator Current validator for chaining
-     */
-    public function isFileRequired($property)
-    {
-        if (!array_key_exists($property, $_FILES)) {
-            $this->addError($property, "is a required File upload");
-        }
-        
         return $this;
     }
 

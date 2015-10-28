@@ -60,6 +60,32 @@ abstract class BaseValidator implements IValidator
     }
 
     /**
+     * Set the data
+     *
+     * @param array $data
+     * @return $this
+     */
+    public function setData(array $data)
+    {
+        $this->data = $data;
+
+        return $this;
+    }
+
+    /**
+     * Set the rules
+     *
+     * @param array $rules
+     * @return $this
+     */
+    public function setRules(array $rules)
+    {
+        $this->rules = $rules;
+
+        return $this;
+    }
+
+    /**
      * Check to see if the validator is in a valid state
      * Must run validate() first
      * @return bool true if valid false if not
@@ -67,6 +93,38 @@ abstract class BaseValidator implements IValidator
     public function valid()
     {
         return !is_null($this->errors) && !count($this->errors);
+    }    /**
+     * Get an array of validation messages
+     * @return array of validation messages
+     */
+    public function validationSummary()
+    {
+        $output = [];
+        foreach ($this->errors as $errors) {
+            foreach (array_keys($errors) as $property) {
+                array_push($output, $this->validationMessageFor($property));
+            }
+        }
+        return $output;
+    }
+
+    /**
+     * Run the validate method if the class is directly invoked
+     */
+    public function __invoke()
+    {
+        $this->validate();
+    }    /**
+     * Retrieve a validation method for a specified property
+     * @param $property string the Property to get message for
+     * @return string The message
+     */
+    public function validationMessageFor($property)
+    {
+        return Arr::multiKeyExists(
+            $this->errors,
+            $property
+        ) ? $this->formatValidationMessage($property) : "";
     }
 
     /**
@@ -100,34 +158,6 @@ abstract class BaseValidator implements IValidator
     }
 
     /**
-     * Get an array of validation messages
-     * @return array of validation messages
-     */
-    public function validationSummary()
-    {
-        $output = [];
-        foreach ($this->errors as $errors) {
-            foreach (array_keys($errors) as $property) {
-                array_push($output, $this->validationMessageFor($property));
-            }
-        }
-        return $output;
-    }
-
-    /**
-     * Retrieve a validation method for a specified property
-     * @param $property string the Property to get message for
-     * @return string The message
-     */
-    public function validationMessageFor($property)
-    {
-        return Arr::multiKeyExists(
-            $this->errors,
-            $property
-        ) ? $this->formatValidationMessage($property) : "";
-    }
-
-    /**
      * Validate a individual property using php kung fu magic
      * checks to see if $this->is{$Rule} exists,
      * if it does make sure it is callable
@@ -145,9 +175,7 @@ abstract class BaseValidator implements IValidator
             // Invoke it with the property and value supplied
             $this->$pattern($property, $value);
         }
-    }
-
-    /**
+    }    /**
      * Format the validation message
      * @param $property string Property to format
      * @return string Formatted validation message
@@ -157,7 +185,15 @@ abstract class BaseValidator implements IValidator
         return Str::camelToTitleCase($property) . " " . $this->extractValidationMessage($property);
     }
 
-    /***
+    /**
+     * Check to see if the property exists in the data
+     * @param $property string Property name
+     * @return bool
+     */
+    protected function hasProperty($property)
+    {
+        return array_key_exists($property, $this->data);
+    }    /***
      * Extract an error message from the error Associative array
      * @param $property string
      * @return string
@@ -167,48 +203,12 @@ abstract class BaseValidator implements IValidator
         return Arr::getInnerValue($this->errors, $property);
     }
 
-    /**
-     * Check to see if the property exists in the data
-     * @param $property string Property name
-     * @return bool
-     */
-    protected function hasProperty($property)
-    {
-        return array_key_exists($property,$this->data);
-    }
 
 
-    /**
-     * Set the rules
-     *
-     * @param array $rules
-     * @return $this
-     */
-    public function setRules(array $rules)
-    {
-        $this->rules = $rules;
 
-        return $this;
-    }
 
-    /**
-     * Set the data
-     *
-     * @param array $data
-     * @return $this
-     */
-    public function setData(array $data)
-    {
-        $this->data = $data;
 
-        return $this;
-    }
 
-    /**
-     * Run the validate method if the class is directly invoked
-     */
-    public function __invoke()
-    {
-        $this->validate();
-    }
+
+
 }
