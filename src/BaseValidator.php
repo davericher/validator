@@ -1,5 +1,4 @@
 <?php
-
 namespace ir0ny1\Validator;
 
 use ir0ny1\Validator\Helpers\Arr;
@@ -202,13 +201,5 @@ abstract class BaseValidator implements IValidator
     {
         return Arr::getInnerValue($this->errors, $property);
     }
-
-
-
-
-
-
-
-
 
 }

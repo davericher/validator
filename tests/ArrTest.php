@@ -1,20 +1,9 @@
 <?php
-
 use ir0ny1\Validator\Helpers\Arr;
 
 class ArrTest extends PHPUnit_Framework_TestCase
 {
     protected $array;
-
-    protected function setUp()
-    {
-        $this->array = [
-            'thekey' =>
-                [
-                    'innerKey' => 'thevalue'
-                ]
-        ];
-    }
 
     public function testMultiKeyExists()
     {
@@ -37,5 +26,15 @@ class ArrTest extends PHPUnit_Framework_TestCase
     public function testInnerKeyExists()
     {
         $this->assertTrue(Arr::innerKeyExists($this->array, 'innerKey'));
+    }
+
+    protected function setUp()
+    {
+        $this->array = [
+            'thekey' =>
+                [
+                    'innerKey' => 'thevalue'
+                ]
+        ];
     }
 }

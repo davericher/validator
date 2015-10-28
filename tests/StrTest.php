@@ -1,5 +1,4 @@
 <?php
-
 use ir0ny1\Validator\Helpers\Str;
 
 class StrTest extends PHPUnit_Framework_TestCase

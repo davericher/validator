@@ -1,5 +1,4 @@
 <?php
-
 use ir0ny1\Validator\Validator;
 
 /**

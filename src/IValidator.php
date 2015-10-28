@@ -1,5 +1,4 @@
 <?php
-
 namespace ir0ny1\Validator;
 
 /**
