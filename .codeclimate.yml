@@ -3,7 +3,9 @@ engines:
     enabled: true
     checks:
       Generic Files LineEndings InvalidEOLChar:
+        enabled: false
       PSR1 Classes ClassDeclaration MissingNamespace:
+        enabled: false
   phpmd:
     enabled: true
     checks:
