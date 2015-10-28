@@ -1,6 +1,10 @@
 # Travis Build
 language: php
 
+addons:
+  code_climate:
+    repo_token: 5f8f8b58638ccf89b93eaaee0c83dd09cd1bc4b241d2ab25cefdd50c9471bd98
+
 php:
   - 5.5
   - 5.6
