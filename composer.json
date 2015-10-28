@@ -1,30 +1,34 @@
 {
-    "name": "ir0ny1/validator",
-    "description":  "PHP Validator inspired by Illuminate Framework",
-    "version":  "0.0.1",
-    "keywords": ["php", "validator", "validation"],
-    "homepage": "https://www.develops.io",
-    "time": "2015-10-21",
-    "type": "package",
-    "license":  "MIT",
-    "authors": [
-        {
-            "name": "Dave Richer",
-            "email": "Dave@Develops.io",
-            "role": "Developer"
-        }
-    ],
-    "minimum-stability": "dev",
-    "require": {
-        "php": ">=5.5.0"
-    },
-    "require-dev": {
-      "phpunit/phpunit":  "4.0.*",
-        "codeclimate/php-test-reporter": "^0.2.0@dev"
-    },
-    "autoload": {
-        "psr-4": {
-            "ir0ny1\\Validator\\": "src"
-        }
+  "name": "ir0ny1/validator",
+  "description": "PHP Validator inspired by Illuminate Framework",
+  "version": "0.0.1",
+  "keywords": [
+    "php",
+    "validator",
+    "validation"
+  ],
+  "homepage": "https://www.develops.io",
+  "time": "2015-10-21",
+  "type": "package",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Dave Richer",
+      "email": "Dave@Develops.io",
+      "role": "Developer"
     }
+  ],
+  "minimum-stability": "dev",
+  "require": {
+    "php": ">=5.5.0"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "4.0.*",
+    "codeclimate/php-test-reporter": "^0.2.0@dev"
+  },
+  "autoload": {
+    "psr-4": {
+      "ir0ny1\\Validator\\": "src"
+    }
+  }
 }
