@@ -16,7 +16,7 @@ class ValidatorTest extends PHPUnit_Framework_TestCase
     public function testInvoke()
     {
         $val = new Validator(
-        // Data
+            // Data
             [
                 'name' => 'dave'
             ],
@@ -35,7 +35,7 @@ class ValidatorTest extends PHPUnit_Framework_TestCase
     public function testWithoutInvoke()
     {
         $val = new Validator(
-        // Data
+            // Data
             [
                 'name' => 'dave'
             ],

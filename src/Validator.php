@@ -155,5 +155,4 @@ class Validator extends BaseValidator
 
         return $this;
     }
-
 }
