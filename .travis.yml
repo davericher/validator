@@ -18,4 +18,4 @@ before_script:
 after_script:
   - vendor/bin/test-reporter
 
-script: phpunit
+script: phpunit --coverage-clover build/logs/clover.xml
