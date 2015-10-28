@@ -1,6 +1,9 @@
 engines:
   phpcodesniffer:
     enabled: true
+    checks:
+      Generic Files LineEndings InvalidEOLChar:
+      PSR1 Classes ClassDeclaration MissingNamespace:
   phpmd:
     enabled: true
     checks:

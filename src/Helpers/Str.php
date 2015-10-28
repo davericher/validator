@@ -31,7 +31,8 @@ class Str
         return strtolower(self::convertCamelCase($input));
     }
 
-    public static function convertCamelCase($input) {
+    public static function convertCamelCase($input)
+    {
         $intermediate = preg_replace('/(?!^)([[:upper:]][[:lower:]]+)/', ' $0', $input);
         $titleStr = preg_replace('/(?!^)([[:lower:]])([[:upper:]])/', '$1 $2', $intermediate);
         return $titleStr;

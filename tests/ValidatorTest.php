@@ -24,9 +24,8 @@ class ValidatorTest extends PHPUnit_Framework_TestCase
             [
                 'name' => 'required'
             ]);
-
-        // Invoke the validation directly
         $val();
+        // Invoke the validation directly
         $this->assertTrue($val->valid());
     }
 

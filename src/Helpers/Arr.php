@@ -61,7 +61,7 @@ class Arr
         if (array_key_exists($key, $array)) {
             return true;
         }
-        foreach ($array as $k => $v) {
+        foreach ($array as $v) {
             if (!is_array($v)) {
                 continue;
             }
